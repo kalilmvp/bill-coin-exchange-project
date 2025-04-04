@@ -179,29 +179,29 @@ class ExchangeBillCoinApiTest {
     }
 
     @Test
-    void givenAValidInput_whenCallExchangeCoinMostFor30DollarAndThen20_shouldReturnErrorNotEnoughCoins() throws Exception {
-        final MockHttpServletRequestBuilder request = post("/api/bill-coin-exchange/least")
+     void givenAValidInput_whenCallExchangeCoinMostFor40DollarAndThen20_shouldReturnErrorNotEnoughCoins() throws Exception {
+        final MockHttpServletRequestBuilder request = post("/api/bill-coin-exchange/most")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(this.objectMapper.writeValueAsString(new ExchangeInputRequest(30)));
+                .content(this.objectMapper.writeValueAsString(new ExchangeInputRequest(40)));
 
         this.mockMvc.perform(request)
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.amountDollars").value(30))
-                .andExpect(jsonPath("$.coins", hasSize(2)))
-                .andExpect(jsonPath("$.coins[0].totalCoins", equalTo(10)))
-                .andExpect(jsonPath("$.coins[0].cents", equalTo(25)))
-                .andExpect(jsonPath("$.coins[0].dollarsCorrespondent", equalTo(25)))
+                .andExpect(jsonPath("$.amountDollars").value(40))
+                .andExpect(jsonPath("$.coins", hasSize(4)))
+                .andExpect(jsonPath("$.coins[0].totalCoins", equalTo(100)))
+                .andExpect(jsonPath("$.coins[0].cents", equalTo(1)))
+                .andExpect(jsonPath("$.coins[0].dollarsCorrespondent", equalTo(1)))
                 .andExpect(jsonPath("$.state", notNullValue()))
-                .andExpect(jsonPath("$.state.amountInDollars", equalTo(30)))
-                .andExpect(jsonPath("$.state.coinsAmount", equalTo(11)))
-                .andExpect(jsonPath("$.state.totalAmount", equalTo(41)))
-                .andExpect(jsonPath("$.state.coins", hasSize(3)))
-                .andExpect(jsonPath("$.state.coins[0].coinCount", equalTo(50)))
-                .andExpect(jsonPath("$.state.coins[0].coinValue", equalTo(10)))
-                .andExpect(jsonPath("$.state.coins[0].totalCents", equalTo(500)));
+                .andExpect(jsonPath("$.state.amountInDollars", equalTo(40)))
+                .andExpect(jsonPath("$.state.coinsAmount", equalTo(41)))
+                .andExpect(jsonPath("$.state.totalAmount", equalTo(81)))
+                .andExpect(jsonPath("$.state.coins", hasSize(4)))
+                .andExpect(jsonPath("$.state.coins[0].coinCount", equalTo(100)))
+                .andExpect(jsonPath("$.state.coins[0].coinValue", equalTo(25)))
+                .andExpect(jsonPath("$.state.coins[0].totalCents", equalTo(2500)));
 
-        final MockHttpServletRequestBuilder request1 = post("/api/bill-coin-exchange/least")
+        final MockHttpServletRequestBuilder request1 = post("/api/bill-coin-exchange/most")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(this.objectMapper.writeValueAsString(new ExchangeInputRequest(20)));
 

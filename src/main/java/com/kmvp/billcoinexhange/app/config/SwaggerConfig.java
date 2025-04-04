@@ -15,8 +15,8 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
-                .info(new Info().title("Bill Coin Exchange API - Backend Test ADB")
+                .info(new Info().title("Bill Coin Exchange API")
                         .version("1.0")
-                        .description("API documentation for the Bill Coin Exchange API - Backend Test ADB"));
+                        .description("API documentation for the Bill Coin Exchange API"));
     }
 }

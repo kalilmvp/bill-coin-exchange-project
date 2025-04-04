@@ -1,6 +1,4 @@
-```markdown
 # Bill Coin Exchange API
-
 This project is a Spring Boot application for the Bill Coin Exchange API. It provides endpoints to exchange bills for coins and initialize the coin machine.
 
 ## Prerequisites
@@ -30,12 +28,12 @@ To build and run the project using Docker, follow these steps:
     ```sh
     docker-compose up
     ```
-
-    The application will be available at `http://localhost:8080`.
+<br/>
+The API's will be available at `http://localhost:8080`.
 
 ## API Endpoints
 
-### Exchange Least
+### Exchange Least Quantity Coins
 
 - **URL**: `/api/bill-coin-exchange/least`
 - **Method**: `POST`
@@ -50,7 +48,7 @@ To build and run the project using Docker, follow these steps:
 
 - **Response**: Returns the exchanged coins and the machine state.
 
-### Exchange Most
+### Exchange Most Quantity Coins
 
 - **URL**: `/api/bill-coin-exchange/most`
 - **Method**: `POST`
@@ -65,7 +63,7 @@ To build and run the project using Docker, follow these steps:
 
 - **Response**: Returns the exchanged coins and the machine state.
 
-### Initialize
+### Initialize Coins
 
 - **URL**: `/api/bill-coin-exchange/init`
 - **Method**: `PUT`
@@ -79,15 +77,11 @@ You can access the Swagger UI to interact with the API endpoints at:
 http://localhost:8080/swagger-ui/index.html
 ```
 
+![SwaggerUI](documentation/swagger-bill-coin.png)
+
 ## Project Structure
 
 - `src/main/java/com/kmvp/billcoinexhange/app/rest`: Contains the REST controllers.
 - `src/main/java/com/kmvp/billcoinexhange/app/rest/models`: Contains the request and response models.
 - `src/main/resources/apis/requests.http`: Contains example HTTP requests for testing the API.
-
-## License
-
-This project is licensed under the MIT License.
-```
-
-This `README.md` file provides a comprehensive guide to building and running the project with Docker, as well as details about the API endpoints and project structure.
+- `src/test/java/com/kmvp/billcoinexhange/app/`: Contains automated tests.

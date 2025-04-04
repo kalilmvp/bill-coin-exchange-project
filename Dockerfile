@@ -1,14 +1,19 @@
-# Use an official OpenJDK runtime as a parent image
-FROM openjdk:21-jdk-slim
+FROM maven:3.9.9-amazoncorretto-21-al2023 AS build
 
-# Set the working directory in the container
 WORKDIR /app
 
-# Copy the project JAR file into the container at /app
-COPY target/bill-coin-exchange-0.0.1-SNAPSHOT.jar app.jar
+COPY pom.xml .
+RUN mvn dependency:go-offline
 
-# Make port 8080 available to the world outside this container
+COPY . .
+RUN mvn clean install
+
+FROM openjdk:21-jdk-slim
+
+WORKDIR /app
+
+COPY --from=build /app/target/bill-coin-exchange-0.0.1-SNAPSHOT.jar app.jar
+
 EXPOSE 8080
 
-# Run the JAR file
 ENTRYPOINT ["java", "-jar", "app.jar"]

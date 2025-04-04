@@ -2,11 +2,11 @@ package com.kmvp.billcoinexhange.app.exceptions;
 
 /**
  * @author kalil.peixoto
- * @date 4/2/25 20:01
+ * @date 4/4/25 23:15
  * @email kalilmvp@gmail.com
  */
-public class InvaliValueException extends RuntimeException{
-    public InvaliValueException(String message) {
+public abstract class BusinessException extends RuntimeException{
+    protected BusinessException(String message) {
         super(message);
     }
 }

@@ -1,8 +1,7 @@
 package com.kmvp.billcoinexhange.app.services;
 
-import com.kmvp.billcoinexhange.app.exceptions.InvaliValueException;
+import com.kmvp.billcoinexhange.app.exceptions.InvalidValueException;
 import com.kmvp.billcoinexhange.app.exceptions.NotEnoughCoinsException;
-import com.kmvp.billcoinexhange.app.models.CoinCount;
 import com.kmvp.billcoinexhange.app.models.MachineState;
 import com.kmvp.billcoinexhange.app.utils.ExchangeUtils;
 import jakarta.annotation.PostConstruct;
@@ -35,7 +34,7 @@ public class ExchangeBillCoinMost implements ExchangeBillCoin {
     @Override
     public Map<Integer, Integer> execute(int amountDollars) {
         if (amountDollars <= 0) {
-            throw new InvaliValueException("Value has to be greater than 0");
+            throw new InvalidValueException("Value has to be greater than 0");
         }
 
         int amountInCents = amountDollars * 100;

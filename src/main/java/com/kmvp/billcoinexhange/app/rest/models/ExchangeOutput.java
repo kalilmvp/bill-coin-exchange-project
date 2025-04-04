@@ -24,7 +24,7 @@ public record ExchangeOutput(int amountDollars, List<Coin> coins, MachineStateOu
 
         List<Coin> coins = new ArrayList<>();
         for (Map.Entry<Integer, Integer> entry : coinCents.entrySet()) {
-            coins.add(Coin.with(entry.getKey(), entry.getValue(), Math.divideExact(Math.multiplyExact(entry.getValue(), entry.getKey()), 100)));
+            coins.add(Coin.with(entry.getValue(), entry.getKey(), Math.divideExact(Math.multiplyExact(entry.getValue(), entry.getKey()), 100)));
         }
         return new ExchangeOutput(amountDollars, coins, MachineStateOutput.with(state));
     }

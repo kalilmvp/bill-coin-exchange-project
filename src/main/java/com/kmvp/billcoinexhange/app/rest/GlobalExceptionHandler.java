@@ -3,6 +3,7 @@ package com.kmvp.billcoinexhange.app.rest;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.kmvp.billcoinexhange.app.exceptions.BusinessException;
 import com.kmvp.billcoinexhange.app.rest.models.ErrorResponse;
+import com.kmvp.billcoinexhange.app.utils.MessageUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -26,12 +27,12 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(InvalidFormatException.class)
     public ResponseEntity<ErrorResponse> handleInvalidFormatException(InvalidFormatException ex, WebRequest request) {
-        return this.getErrorBadRequest("The value has to be numeric", request);
+        return this.getErrorBadRequest(MessageUtils.MSG_VALUE_HAS_TO_BE_NUM, request);
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErrorResponse> handleMessageNotReadableException(InvalidFormatException ex, WebRequest request) {
-        return this.getErrorBadRequest("The value has to be numeric", request);
+        return this.getErrorBadRequest(MessageUtils.MSG_VALUE_HAS_TO_BE_NUM, request);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

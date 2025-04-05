@@ -4,6 +4,7 @@ import com.kmvp.billcoinexhange.app.exceptions.InvalidValueException;
 import com.kmvp.billcoinexhange.app.exceptions.NotEnoughCoinsException;
 import com.kmvp.billcoinexhange.app.models.MachineState;
 import com.kmvp.billcoinexhange.app.utils.ExchangeUtils;
+import com.kmvp.billcoinexhange.app.utils.MessageUtils;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +35,7 @@ public class ExchangeBillCoinMost implements ExchangeBillCoin {
     @Override
     public Map<Integer, Integer> execute(int amountDollars) {
         if (amountDollars <= 0) {
-            throw new InvalidValueException("Value has to be greater than 0");
+            throw new InvalidValueException(MessageUtils.MSG_VALUE_GREATER_THAN_0);
         }
 
         int amountInCents = amountDollars * 100;
@@ -53,7 +54,7 @@ public class ExchangeBillCoinMost implements ExchangeBillCoin {
             }
         }
         if (amountInCents > 0) {
-            throw new NotEnoughCoinsException("Not enough coins to exchange the amount.");
+            throw new NotEnoughCoinsException(MessageUtils.MSG_NOT_ENOUG_COINS);
         }
         return result;
     }

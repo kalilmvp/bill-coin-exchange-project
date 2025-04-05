@@ -2,6 +2,7 @@ package com.kmvp.billcoinexhange.app.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kmvp.billcoinexhange.app.rest.models.ExchangeInputRequest;
+import com.kmvp.billcoinexhange.app.utils.MessageUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +78,7 @@ class ExchangeBillCoinApiTest {
         this.mockMvc.perform(request)
                 .andDo(print())
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.message", equalTo("The value has to be numeric")))
+                .andExpect(jsonPath("$.message", equalTo(MessageUtils.MSG_VALUE_HAS_TO_BE_NUM)))
                 .andExpect(jsonPath("$.details", notNullValue()));
     }
 
@@ -90,7 +91,7 @@ class ExchangeBillCoinApiTest {
         this.mockMvc.perform(request)
                 .andDo(print())
                 .andExpect(status().isUnprocessableEntity())
-                .andExpect(jsonPath("$.message", equalTo("Value has to be greater than 0")))
+                .andExpect(jsonPath("$.message", equalTo(MessageUtils.MSG_VALUE_GREATER_THAN_0)))
                 .andExpect(jsonPath("$.details", notNullValue()));
     }
 
@@ -124,7 +125,7 @@ class ExchangeBillCoinApiTest {
         this.mockMvc.perform(request1)
                 .andDo(print())
                 .andExpect(status().isUnprocessableEntity())
-                .andExpect(jsonPath("$.message", equalTo("Not enough coins to exchange the amount.")))
+                .andExpect(jsonPath("$.message", equalTo(MessageUtils.MSG_NOT_ENOUG_COINS)))
                 .andExpect(jsonPath("$.details", notNullValue()));
     }
 
@@ -161,7 +162,7 @@ class ExchangeBillCoinApiTest {
         this.mockMvc.perform(request)
                 .andDo(print())
                 .andExpect(status().isUnprocessableEntity())
-                .andExpect(jsonPath("$.message", equalTo("Value has to be greater than 0")))
+                .andExpect(jsonPath("$.message", equalTo(MessageUtils.MSG_VALUE_GREATER_THAN_0)))
                 .andExpect(jsonPath("$.details", notNullValue()));
     }
 
@@ -174,7 +175,7 @@ class ExchangeBillCoinApiTest {
         this.mockMvc.perform(request)
                 .andDo(print())
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.message", equalTo("The value has to be numeric")))
+                .andExpect(jsonPath("$.message", equalTo(MessageUtils.MSG_VALUE_HAS_TO_BE_NUM)))
                 .andExpect(jsonPath("$.details", notNullValue()));
     }
 
@@ -208,7 +209,7 @@ class ExchangeBillCoinApiTest {
         this.mockMvc.perform(request1)
                 .andDo(print())
                 .andExpect(status().isUnprocessableEntity())
-                .andExpect(jsonPath("$.message", equalTo("Not enough coins to exchange the amount.")))
+                .andExpect(jsonPath("$.message", equalTo(MessageUtils.MSG_NOT_ENOUG_COINS)))
                 .andExpect(jsonPath("$.details", notNullValue()));
     }
 

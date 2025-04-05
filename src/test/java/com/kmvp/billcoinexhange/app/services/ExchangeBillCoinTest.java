@@ -1,5 +1,6 @@
 package com.kmvp.billcoinexhange.app.services;
 
+import com.kmvp.billcoinexhange.app.exceptions.InvalidValueException;
 import com.kmvp.billcoinexhange.app.exceptions.NotEnoughCoinsException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -54,8 +55,18 @@ class ExchangeBillCoinTest {
     }
 
     @Test
+    void givenMultipleDollarCoins_whenCallExchangeLeastWith0Value_shouldThrowErrorValueGreaterThan0() {
+        assertThrows(InvalidValueException.class, () -> this.exchangeBillCoinLeast.execute(0));
+    }
+
+    @Test
     void givenMultipleDollarCoins_whenCallExchangeMost_shouldThrowErrorNotEnoughCoinsException() {
         assertThrows(NotEnoughCoinsException.class, () -> this.exchangeBillCoinMost.execute(1000));
+    }
+
+    @Test
+    void givenMultipleDollarCoins_whenCallExchangeMostWith0Value_shouldThrowErrorValueGreaterThan0() {
+        assertThrows(InvalidValueException.class, () -> this.exchangeBillCoinMost.execute(0));
     }
 
     @Test

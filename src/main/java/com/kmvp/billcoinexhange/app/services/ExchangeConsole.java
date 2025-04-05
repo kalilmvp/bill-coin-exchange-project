@@ -2,6 +2,7 @@ package com.kmvp.billcoinexhange.app.services;
 
 import com.kmvp.billcoinexhange.app.exceptions.NotEnoughCoinsException;
 import com.kmvp.billcoinexhange.app.utils.ExchangeUtils;
+import com.kmvp.billcoinexhange.app.utils.MessageUtils;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -49,7 +50,7 @@ public class ExchangeConsole implements ExchangePrintable {
             }
         }
         if (amountInCents > 0) {
-            throw new NotEnoughCoinsException("Not enough coins to exchange the amount.");
+            throw new NotEnoughCoinsException(MessageUtils.MSG_NOT_ENOUG_COINS);
         }
         return result;
     }
